@@ -9,20 +9,25 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import accounts
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import environ
+from pathlib import Path
 
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kcj#v#0s^l@s^=&lztvigrso4rv%u^*3zj+@%@kxu8!t8qy(o5'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 if DEBUG:
     # During developement only
@@ -79,11 +84,12 @@ WSGI_APPLICATION = 'proactive.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proactive',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'postgres'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env("DATABASE_NAME"),
+        'USER' : env("DATABASE_USER"),
+        'PASSWORD' : env("DATABASE_PASSWORD"),
+        'HOST' : env("DATABASE_HOST"),
+        'PORT' : env("DATABASE_PORT"),
     }
 }
 

@@ -1,27 +1,29 @@
 version: "3.4"
 
 services:
-  pms_app:
+  proactive_app:
     build:
       context: .
       dockerfile: docker/app/Dockerfile
-    image: pms_app
-    container_name: pms_app
+    image: proactive_app
+    container_name: proactive_app
     ports:
       - "8000:8000"
     networks:
-      - pms_app_network
+      - proactive_app_network
+    env_file:
+      - proactive.env
 
-  pms_webserver:
+  proactive_webserver:
     build:
       context: .
       dockerfile: docker/web/Dockerfile
-    image: pms_web
-    container_name: pms_webserver
+    image: proactive_web
+    container_name: proactive_webserver
     ports:
       - "8080:8080"
     networks:
-      - pms_app_network
+      - proactive_app_network
 
   postgres:
     image: postgres:13.3
@@ -32,8 +34,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_HOST_AUTH_METHOD: trust
     networks:
-      - pms_app_network
+      - proactive_app_network
 
 networks:
-  pms_app_network:
+  proactive_app_network:
     driver: bridge
