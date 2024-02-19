@@ -1,0 +1,144 @@
+{% extends 'verify/base.html' %}
+
+
+{%  block verifier %}
+
+<!-- Main Container -->
+<main id="main-container" class="bg-white-75">
+    <!-- Page Content -->
+    <div class="pt-5 text-center">
+        <a class="link-fx text-success font-w700 font-size-h1" href="/">
+            <span class="text-dark">Proactive</span><span class="text-success">&nbsp;Marketplace</span>
+        </a>
+        <p class="text-uppercase font-w700 font-size-sm text-muted">Edit Products</p>
+    </div>
+    <form class="js-validation-signup" action="{{details.id}}" method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+        <div class="row no-gutters justify-content-center">
+            <div class="col-sm-4 mx-2">
+                <div class="form-group" hidden>
+                    <label class="py-1 pl-2">Magento ID</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Magento_ID"
+                        value="{{details.magento_id}}" name="magento_id" placeholder="Magento ID" >
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Product ID</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Product_ID"
+                        value="{{details.product_id}}" name="product_id" placeholder="Product ID">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Building</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Building"
+                        value="{{details.building}}" name="building" placeholder="Building">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Unit</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Unit"
+                        value="{{details.unit}}" name="unit" placeholder="Unit">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Column</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Column"
+                        value="{{details.column}}" name="column" placeholder="Column">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Level</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Level"
+                        value="{{details.level}}" name="level" placeholder="Level">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Weight</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Weight"
+                        value="{{details.weight}}" name="weight" placeholder="Weight">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Quantity</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Qty"
+                        value="{{details.quantity}}" name="quantity" placeholder="Quantity">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Description</label><br>
+                    <textarea type="text" cols="40" rows="3" class="form-control form-control-lg form-control-alt"
+                        id="Description"  name="description"
+                        placeholder="Description">{{details.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Source</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Source"
+                        value="{{details.source}}" name="source" placeholder="Source">
+                </div>
+            </div>
+            <div class="col-sm-4 mx-2">
+                <div class="form-group">
+                    <label class="py-1 pl-2">Location ID</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="locationID"
+                        value="{{details.location_id}}" name="location_id" placeholder="Location ID">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Floor</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Floor"
+                        value="{{details.floor}}" name="floor" placeholder="Floor">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Pallet</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Pallet"
+                        value="{{details.pallet}}" name="pallet" placeholder="Pallet">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Row</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Row"
+                        value="{{details.row}}" name="row" placeholder="Row">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Dimensions</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Dimensions"
+                        value="{{details.dimension}}" name="dimension" placeholder="Dimensions">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Make/Brand</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Make/Brand"
+                        value="{{details.make_brand}}" name="make_brand" placeholder="Make/Brand">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Price</label><br>
+                    <input type="text" class="form-control form-control-lg form-control-alt" id="Price"
+                        value="{{details.price}}" name="price" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Product Link</label><br>
+                    <textarea type="text" cols="40" rows="3" class="form-control form-control-lg form-control-alt"
+                        id="Product"  name="product_link"
+                        placeholder="Product Link">{{details.product_link}}</textarea>
+                </div>
+                <div class="form-group">
+                    {% for img in images %}
+                    <a class="btn" id="myFile" href="{{img.image.url}}"
+                        target="_blank">{{img.image}}</a>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label class="py-1 pl-2">Product Image</label><br>
+                    <input type="file" multiple class="btn form-control form-control-lg form-control-alt" id="myFile" name="product_image">
+                </div>
+            </div>
+        </div>
+        <div class=" form-group col-sm-6 align-self-center mx-auto">
+            <button type="submit " class="btn btn-block btn-hero-lg btn-hero-success ">
+                <i class="fa fa-fw fa-pen mr-1 "></i> Edit Product
+            </button>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="mb-3 text-center">
+            <p class="text-uppercase font-w700 font-size-sm text-muted text-danger">{{message}}
+            </p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </form>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+
+
+{%  endblock %}

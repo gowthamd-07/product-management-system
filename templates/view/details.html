@@ -1,0 +1,96 @@
+{% extends 'view/base.html' %}
+
+{%  block viewer %}
+        <!-- Main Container -->
+        <main id="main-container">
+            <!-- Hero Section -->
+            <div class="bg-image" style="background-image: url('../static/media/photos/photo12@2x.jpg');">
+                <div class="bg-gd-white-op-l">
+                    <div class="content content-boxed content-full py-5">
+                        {% if isupdated == False and verifiedFlag == True %}
+                        <form action='{{details.id}}' method='POST'>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-8 d-flex align-items-center py-3">
+                                <div class="w-100 text-center text-md-left">
+                                    <h1 class="h2 mb-2">{{details.make_brand}}</h1>
+                                    <h2 class="h4 font-size-sm text-uppercase font-w600 text-muted">{{details.description}}</h2>
+                                    <div class="form-group">
+                                        <label for="so-profile-id">Magento Id</label>
+                                        <input type="id" class="form-control form-control-lg form-control-alt" id="magento-id" name="mmagento_id" placeholder="Magento Id" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                
+                                        <div class="block-content block-content-full px-5 py-4">
+                                            
+                                            
+                                                <button class="btn btn-hero-primary" type="submit" onclick="return confirm('Are you want to update this Product?');" >
+                                                <i class="fa fa-arrow-right mr-1"></i>Update
+                                            </span>
+                                            
+                                            
+                                        </div>
+                                
+                        
+                                    
+                                </div>
+                        </div>
+                        </form>
+                        {% endif %}
+                        
+                        {% if isupdated == True %}
+                            <p class="text-muted mb-2">Product updated to Magento successfully..!</p>
+                        {% endif %}
+
+                        {% if isupdated == False and verifiedFlag == False %}
+                            <p class="text-muted mb-2">Product has to be verified..!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- END Hero Section -->
+
+            <!-- Page Content -->
+            <div class="content content-boxed" style="overflow-x:auto;">
+                <div class="row">
+                    <!-- Job Description -->
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Product Summary</h3>
+                        </div>
+                        <div class="block-content">
+                            <p class="text-muted mb-2">Product ID : {{details.product_id}}</p>
+                            <p class="text-muted mb-2">Location ID : {{details.location_id}}</p>
+                            <p class="text-muted mb-2">Building : {{details.building}}</p>
+                            <p class="text-muted mb-2">Floor : {{details.floor}}</p>
+                            <p class="text-muted mb-2">Unit : {{details.unit}}</p>
+                            <p class="text-muted mb-2">Row : {{details.row}}</p>
+                            <p class="text-muted mb-2">Column : {{details.column}}</p>
+                            <p class="text-muted mb-2">Pallet : {{details.pallet}}</p>
+                            <p class="text-muted mb-2">Level : {{details.level}}</p>
+                            <p class="text-muted mb-2">Dimensions : {{details.dimension}}</p>
+                            <p class="text-muted mb-2">Weight : {{details.weight}}</p>
+                            <p class="text-muted mb-2">Description : {{details.description}}</p>
+                            <p class="text-muted mb-2">Quantity : {{details.quantity}}</p>
+                            <p class="text-muted mb-2">Make/Brand : {{details.make_brand}}</p>
+                            <p class="text-muted mb-2">Source : {{details.source}}</p>
+                            <p class="text-muted mb-2">Price : ${{details.price}}</p>
+                            <a class="text-muted mb-2"
+                                href="{{details.product_link}}"
+                                target="_blank">Product Link : {{details.product_link}}
+                                </a><br>
+                                <a class="text-muted mb-2" href="{% url 'viewerimageView' details.id %}" target="_blank">Product Images</a><br>
+                            
+                        </div>
+        
+                    </div>
+                    <!-- END Job Description -->
+                </div>
+            </div>
+            <!-- END Page Content -->
+        </main>
+        <!-- END Main Container -->
+
+{%  endblock  %}

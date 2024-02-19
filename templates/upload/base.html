@@ -1,0 +1,355 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>Proactive Marketplace</title>
+
+    <meta name="description" content="Proactive Marketplace created by Syntorion and published on 2021">
+    <meta name="author" content="syntorion">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="Proactive Marketplace">
+    <meta property="og:site_name" content="Proactive Marketplace">
+    <meta property="og:description" content="Proactive Marketplace created by Syntorion and published on 2021">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="{% static '/media/favicons/log.png'%}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static '/media/favicons/log.png'%}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/media/favicons/log.png'%}">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and Dashmix framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" id="css-main" href="{% static '/css/dashmix.min.css'%}">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/xwork.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+
+<body>
+    <div id="page-container"
+        class="sidebar-o sidebar-dark body-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+        <!-- Side Overlay-->
+        <aside id="side-overlay">
+            <!-- Side Header -->
+            <div class="bg-image" style="background-image: url('../static/media/various/bg_side_overlay_header.jpg');">
+                <div class="bg-primary-op">
+                    <div class="content-header">
+                        <!-- User Avatar -->
+                        <a class="img-link mr-1" href="javascript:void(0)" data-toggle="layout"
+                            data-action="side_overlay_toggle">
+                            <img class="img-avatar img-avatar48" src="{% static '/media/avatars/avatar10.jpg'%}" alt="">
+                        </a>
+                        <!-- END User Avatar -->
+
+                        <!-- User Info -->
+                        <div class="ml-2">
+                            <a class="text-white font-w600">{{user.username}}</a>
+                            <div class="text-white-75 font-size-sm">Product Uploader</div>
+                        </div>
+                        <!-- END User Info -->
+
+                        <!-- Close Side Overlay -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="ml-auto text-white" href="javascript:void(0)" data-toggle="layout"
+                            data-action="side_overlay_close">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                        <!-- END Close Side Overlay -->
+                    </div>
+                </div>
+            </div>
+            <!-- END Side Header -->
+
+            <!-- Side Content -->
+            <div class="content-side">
+                <!-- Side Overlay Tabs -->
+                <div class="block block-transparent pull-x pull-t">
+
+                    <div class="block-content tab-content overflow-hidden">
+                        <!-- Settings Tab -->
+                        <div class="tab-pane pull-x fade fade-up show active" id="so-settings" role="tabpanel">
+                            <div class="block mb-0">
+                                <form action="signin.html" method="POST" onsubmit="return false;">
+                                    <div class="block mb-0">
+                                        <!-- Personal -->
+                                        <div class="block-content block-content-sm block-content-full bg-body">
+                                            <span class="text-uppercase font-size-sm font-w700">Personal</span>
+                                        </div>
+                                        <div class="block-content block-content-full">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="text" readonly class="form-control" id="staticEmail"
+                                                    value="{{user.username}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="so-profile-name">Name</label>
+
+                                                <input type="text" readonly class="form-control" id="so-profile-name"
+                                                    name="so-profile-name"
+                                                    value="{{user.first_name}} {{user.last_name}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="so-profile-email">Email</label>
+                                                <input type="email" readonly class="form-control" id="so-profile-email"
+                                                    name="so-profile-email" value="{{user.email}}">
+                                            </div>
+                                        </div>
+                                        <!-- END Personal -->
+
+                                        <!-- Password Update -->
+
+                                        <!-- END Password Update -->
+                                    </div>
+                                    <!-- END Options -->
+
+                                    <!-- Submit -->
+                                     <!-- Submit -->
+                                     <div class="block-content row justify-content-center border-top">
+                                        <div class="col-9">
+                                            <a href="{% url 'password_change'%}">Change Password</a>
+                                        </div>
+                                    </div>
+                                    <!-- END Submit -->
+                                    <!-- END Submit -->
+                            </div>
+                            </form>
+                        </div>
+                        <!-- END Profile -->
+                    </div>
+                </div>
+                <!-- END Side Overlay Tabs -->
+            </div>
+            <!-- END Side Content -->
+        </aside>
+        <!-- END Side Overlay -->
+
+        <!-- Sidebar -->
+        <!--
+                Sidebar Mini Mode - Display Helper classes
+
+                Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
+                Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
+                    If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
+
+                Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
+                Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
+                Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
+            -->
+        <nav id="sidebar" aria-label="Main Navigation">
+            <!-- Side Header -->
+            <div class="bg-header-dark">
+                <div class="content-header bg-white-10">
+                    <!-- Logo -->
+                    <a class="font-w600 text-white tracking-wide" href="/">
+                        <span class="smini-visible">
+                            P<span class="opacity-75">M</span>
+                        </span>
+                        <span class="smini-hidden">
+                            Proactive<span class="opacity-75">&nbsp;Marketplace</span>
+                        </span>
+                    </a>
+                    <!-- END Logo -->
+
+                    <!-- Options -->
+                    <div>
+                        <!-- END Toggle Sidebar Style -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-white ml-2" data-toggle="layout" data-action="sidebar_close"
+                            href="javascript:void(0)">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
+                </div>
+            </div>
+            <!-- END Side Header -->
+
+            <!-- Sidebar Scrolling -->
+            <div class="js-sidebar-scroll">
+                <!-- Side Navigation -->
+                <div class="content-side">
+                    <ul class="nav-main">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if '/uploader/dashboard' in request.path %}active {% endif %} " href="{% url 'uploaderdashboard' %}">
+                                <i class="nav-main-link-icon fa fa-location-arrow"></i>
+                                <span class="nav-main-link-name">Dashboard</span>
+                            </a>
+                            
+                            
+                        </li>
+                        <li class="nav-main-item" style="border-top: 3px solid #bbb;margin: 5px;"></li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if '/uploader/products' in request.path %} active {% endif %}" href="{% url 'uploaderproducts' %}">
+                                <i class="nav-main-link-icon fa fa-shopping-cart"></i>
+                                <span class="nav-main-link-name">Products</span>
+                            </a>
+                            
+                            
+                        </li>
+                        <li class="nav-main-item" style="border-top: 3px solid #bbb;margin: 5px;"></li>
+                        <li class="nav-main-item">
+                            
+                            <a class="nav-main-link {% if '/uploader/addproduct' in request.path %} active {% endif %}" href="{% url 'uploaderaddproduct' %}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Add Product</span>
+                            </a>
+                            
+
+                        </li>
+                        <li class="nav-main-item" style="border-top: 3px solid #bbb;margin: 5px;"></li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="/accounts/logout">
+                                <i class="nav-main-link-icon fa fa-cog"></i>
+                                <span class="nav-main-link-name">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END Side Navigation -->
+            </div>
+            <!-- END Sidebar Scrolling -->
+        </nav>
+        <!-- END Sidebar -->
+
+        <!-- Header -->
+        <header id="page-header">
+            <!-- Header Content -->
+            <div class="content-header">
+                <!-- Left Section -->
+                <div>
+                    <!-- Toggle Sidebar -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                    <button type="button" class="btn btn-dual" data-toggle="layout" data-action="sidebar_toggle">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                    <!-- END Toggle Sidebar -->
+
+                    <!-- Open Search Section -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    {% if request.path != '/uploader/addproduct'%}
+                    <button type="button" class="btn btn-dual" data-toggle="layout" data-action="header_search_on">
+                        <i class="fa fa-fw fa-search"></i> <span class="ml-1 d-none d-sm-inline-block">Search</span>
+                    </button>
+                    {% endif %}
+
+                    <!-- END Open Search Section -->
+                </div>
+                <!-- END Left Section -->
+
+                <!-- Right Section -->
+                <div>
+                    <!-- User Dropdown -->
+                    <!-- END User Dropdown -->
+
+                    <!-- Notifications Dropdown -->
+                    <!-- END Notifications Dropdown -->
+
+                    <!-- Toggle Side Overlay -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <button type="button" class="btn btn-dual" data-toggle="layout" data-action="side_overlay_toggle">
+                        <i class="far fa-fw fa-list-alt"></i>
+                    </button>
+                    <!-- END Toggle Side Overlay -->
+                </div>
+                <!-- END Right Section -->
+            </div>
+            <!-- END Header Content -->
+            <div id="page-header-search" class="overlay-header bg-header-dark">
+                <div class="bg-white-10">
+                    <div class="content-header">
+                        <form class="w-100" action="javascript:void(0)" method="POST">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                    <button type="button" class="btn btn-alt-primary" data-toggle="layout"
+                                        data-action="header_search_off">
+                                        <i class="fa fa-fw fa-times-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control border-0" placeholder="Search or hit ESC.."
+                                    id="page-header-search-input" name="page-header-search-input">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- END Header Search -->
+
+            <!-- Header Loader -->
+            <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+            <div id="page-header-loader" class="overlay-header bg-header-dark">
+                <div class="bg-white-10">
+                    <div class="content-header">
+                        <div class="w-100 text-center">
+                            <i class="fa fa-fw fa-sun fa-spin text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Header Loader -->
+        </header>
+        <!-- END Header -->
+
+
+        <!-- Main Container -->
+        {% block uploader %}
+
+
+        {% endblock %}
+
+
+        <!-- END Main Container -->
+
+        <!-- Footer -->
+        <footer id="page-footer" class="bg-body-light">
+            <div class="content py-0">
+                <div class="row font-size-sm">
+                    <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
+                        Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600"
+                            href="https://syntorion.com/" target="_blank">syntorion</a>
+                    </div>
+                    <div class="col-sm-6 order-sm-1 text-center text-sm-left">
+                        <a class="font-w600" href="/">Proactive Marketplace</a> &copy; <span
+                            data-toggle="year-copy"></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+    </div>
+    <!-- END Page Container -->
+
+
+    <script src="{% static '/js/dashmix.core.min.js'%}"></script>
+
+    <!--
+            Dashmix JS
+
+            Custom functionality including Blocks/Layout API as well as other vital and optional helpers
+            webpack is putting everything together at assets/_js/main/app.js
+        -->
+    <script src="{% static '/js/dashmix.app.min.js'%}"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="{% static '/js/plugins/chart.js/Chart.bundle.min.js'%}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{% static '/js/pages/be_pages_dashboard.min.js'%}"></script>
+</body>
+
+</html>
