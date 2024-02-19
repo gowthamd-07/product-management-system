@@ -1,4 +1,4 @@
-FROM python:3.10.9
+FROM python:3.7
 
 # Declared Environment Variables
 ENV PMS=/var/app
@@ -9,14 +9,12 @@ ENV PYTHONDONTWRITEBYTECODE=1
 RUN mkdir -p $PMS
 WORKDIR $PMS
 
-# Adding Packages
-RUN pip install django
-RUN pip install pillow
-RUN pip install psycopg
-RUN pip install gunicorn
-ADD ./static /static
-ADD . .
+ADD requirements.txt requirements.txt
 
+# Adding Packages
+RUN pip install -r requirements.txt
+ADD . .
+RUN python manage.py collectstatic --noinput
 ADD docker/app/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
